@@ -24,6 +24,7 @@ $(function () {
         }
 
         var selectedProduct = {
+            'id': id,
             'name': $("#title").text(),
             'lens': $("#lenses").val(),
             'price': $("#price").text()
