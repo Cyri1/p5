@@ -49,38 +49,49 @@ $(function () { // au chargement de la page
         var city = $("#city").val()
         var address = $("#address").val()
 
-        if (/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
+        var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+        var regexNodigit = /^[^0-9]{2,}$/
+        var regexAddress = /^[A-Za-z0-9" "]{2,}$/
+
+        if (regexEmail.test(email)) {
             $("#check-email").html(`<small class="text-success">Valide</small>`)
         } else {
             $("#check-email").html(`<small class="text-danger">Ce champ ne doit contenir ni caractères spéciaux autre que "-", "_", ".", ni majuscules, ni accents.</small>`)
         }
 
-        if (/^[^0-9]{2,}$/.test(firstname)) {
+        if (regexNodigit.test(firstname)) {
             $("#check-firstname").html(`<small class="text-success">Valide</small>`)
         } else {
             $("#check-firstname").html(`<small class="text-danger">Ce champ ne doit pas contenir de chiffres et contenir plus de 2 caractères.</small>`)
         }
 
-        if (/^[^0-9]{2,}$/.test(name)) {
+        if (regexNodigit.test(name)) {
             $("#check-name").html(`<small class="text-success">Valide</small>`)
         } else {
             $("#check-name").html(`<small class="text-danger">Ce champ ne doit pas contenir de chiffres et contenir plus de 2 caractères.</small>`)
         }
 
-        if (/^[^0-9]{2,}$/.test(city)) {
+        if (regexNodigit.test(city)) {
             $("#check-city").html(`<small class="text-success">Valide</small>`)
         } else {
             $("#check-city").html(`<small class="text-danger">Ce champ ne doit pas contenir de chiffres et contenir plus de 2 caractères.</small>`)
         }
 
-        if (/^[^%]{2,}$/.test(address)) {
+        if (regexAddress.test(address)) {
             $("#check-address").html(`<small class="text-success">Valide</small>`)
         } else {
             $("#check-address").html(`<small class="text-danger">Ce champ doit contenir plus de 2 caractères.</small>`)
         }
 
         /////// si tous les champs sont OK alors envoyer le POST
-        if (/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email) && /^[^0-9]{2,}$/.test(firstname) && /^[^0-9]{2,}$/.test(name) && /^[^0-9]{2,}$/.test(city) && /^[^%]{2,}$/.test(address)) {
+        if (regexEmail.test(email) && regexNodigit.test(firstname) && regexNodigit.test(name) && regexNodigit.test(city) && regexAddress.test(address)) {
+
+            //créer l'array products et le remplir avec les id du cartContent
+            var products = [];
+            for (value of cartContent) {
+                value = JSON.parse(value)
+                products.push(value.id)
+            }
 
             // créer l'object contact 
             var body = {
@@ -91,14 +102,14 @@ $(function () { // au chargement de la page
                     "city": city,
                     "email": email
                 },
-                products: [
-                    "5be1ed3f1c9d44000030b061"
-                ]
+                products
             }
-            console.log(body)
-            // créer l'object contact 
+
             fetch("https://oc-p5-api.herokuapp.com/api/cameras/order", {
                 method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
                 body: JSON.stringify(body)
             }).then(function (response) {
                 console.log(response)
