@@ -105,16 +105,33 @@ $(function () { // au chargement de la page
                 products
             }
 
-            fetch("https://oc-p5-api.herokuapp.com/api/cameras/order", {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            }).then(function (response) {
-                console.log(response)
-            })
+            function status(response) {
+                if (response.status >= 200 && response.status < 300) {
+                    return Promise.resolve(response)
+                } else {
+                    return Promise.reject(new Error(response.statusText))
+                }
+            }
 
+            function json(response) {
+                return response.json()
+            }
+
+            fetch("https://oc-p5-api.herokuapp.com/api/cameras/order", {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                })
+                .then(status)
+                .then(json)
+                .then(function (data) {
+                    localStorage.removeItem("cartContent")
+                    window.location.href = "confirm.html?orderid="+data.orderId
+                }).catch(function (error) {
+                    console.log('Request failed', error)
+                });
         }
     })
 })
