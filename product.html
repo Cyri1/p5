@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
@@ -20,6 +21,7 @@
         defer>
     </script>
     <script src="https://kit.fontawesome.com/837c30f2c0.js" crossorigin="anonymous" defer></script>
+    <script src="./js/main.js"></script>
     <script src="./js/product.js"></script>
 
     <title>Orinoco - Le site des référence pour vos appareils photo</title>
@@ -27,7 +29,11 @@
 <header>
     <nav class="navbar navbar-dark bg-dark">
         <a href="index.html" class="navbar-brand">Orinoco</a>
-        <a href="cart.html" class="btn btn-outline-light my-2 my-sm-0">Panier</a>
+        <a href="cart.html" class="btn btn-outline-light my-2 my-sm-0"> 
+            <span class="fa-layers fa-lg fa-fw">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="counter" class="fa-layers-counter fa-layers-top-right"></span>
+            </span></a>
     </nav>
 </header>
 
@@ -54,30 +60,21 @@
 
 <div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Le produit a été ajouté au panier.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            </div>
         </div>
-        <div class="modal-body">
-          Le produit a été ajouté au panier.
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 </html>
-<style>
-    .product {
-        width: 900px;
-    }
-
-    .justify-content-evenly {
-        justify-content: space-evenly;
-    }
-</style>

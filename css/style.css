@@ -1,0 +1,19 @@
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+
+.product-index {
+    width: 750px;
+}
+
+.product {
+    width: 900px;
+}
+
+.cart {
+    width: 900px;
+}
+
+#counter {
+    font-size: 35px;
+}
