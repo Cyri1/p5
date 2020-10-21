@@ -150,6 +150,19 @@ function sum() { // calcule le prix total
     return
 }
 
+function disableOrderButton() { // désactiver le bouton "commande" si le panier est vide 
+    if (cartContent !== null) {
+        if (cartContent.length > 0) {
+            document.getElementById("confirm-order-button").disabled = false
+        } else {
+            document.getElementById("confirm-order-button").disabled = true
+        }
+    }
+    else {
+        document.getElementById("confirm-order-button").disabled = true
+    }
+}
+
 document.addEventListener('DOMContentLoaded', (event) => { // au chargement de la page
     if (Array.isArray(cartContent) && cartContent.length > 0) { // si cartContent est un tableau contenant des valeurs
         document.getElementById("empty-cart").remove() //supprime la ligne "votre panier est vide"
@@ -172,6 +185,7 @@ document.addEventListener('DOMContentLoaded', (event) => { // au chargement de l
         document.getElementById('cart-list').appendChild(tr);
         sum() //calculer le prix total
     }
+    disableOrderButton() //désactiver le bouton "commande" si rien dans le panier
 
     document.addEventListener("click", function (event) {
 
@@ -182,6 +196,7 @@ document.addEventListener('DOMContentLoaded', (event) => { // au chargement de l
             cartContent.splice(rowIndex, 1) //supprime la ligne du tableau cartContent
             localStorage.setItem("cartContent", JSON.stringify(cartContent)) //mettre à jour le localStorage
             sum() //mettre à jour le prix total
+            disableOrderButton() //désactiver le bouton "commande" si rien dans le panier
         }
         if (event.target.matches('#submit-order')) {
             // vérfier chaque champs avant d'envoyer le formulaire
@@ -269,7 +284,7 @@ document.addEventListener('DOMContentLoaded', (event) => { // au chargement de l
                     .then(json)
                     .then(function (data) {
                         localStorage.removeItem("cartContent") //supprimer le cartContent du localStorage
-                        window.location.href = "confirm.html?orderid=" + data.orderId //rediriger l'utilisateur vers la page confirm.html avec en parametre d'url l'orderid
+                        window.location.href = "confirm.html?orderid=" + data.orderId + "&price=" + totalPrice //rediriger l'utilisateur vers la page confirm.html avec en parametre d'url l'orderid
                     }).catch(function (error) {
                         console.log('Request failed', error)
                     });
