@@ -206,14 +206,14 @@ document.addEventListener('DOMContentLoaded', (event) => { // au chargement de l
             var city = document.getElementById('city').value
             var address = document.getElementById('address').value
 
-            var regexEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+            var regexEmail = /^(([^é€èôêù<>$^*()\[\]\.,;:\s@\"]+(\.[^é€èôêù<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^é€èôêù<>()[\]\.,;:\s@\"]+\.)+[^é€èôêù<>()[\]\.,;:\s@\"]{2,})$/i
             var regexNodigit = /^[^0-9]{2,}$/
             var regexAddress = /^[A-Za-z0-9" "]{2,}$/
 
             if (regexEmail.test(email)) {
                 document.getElementById('check-email').innerHTML = `<small class="text-success">Valide</small>`
             } else {
-                document.getElementById('check-email').innerHTML = `<small class="text-danger">Ce champ ne doit contenir ni caractères spéciaux autre que "-", "_", ".", ni majuscules, ni accents.</small>`
+                document.getElementById('check-email').innerHTML = `<small class="text-danger">Veuilliez entrer une adresse email valide</small>`
             }
 
             if (regexNodigit.test(firstname)) {
