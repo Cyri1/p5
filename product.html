@@ -26,6 +26,8 @@
 
     <title>Orinoco - Le site des référence pour vos appareils photo</title>
 </head>
+<body>
+
 <header>
     <nav class="navbar navbar-dark bg-dark">
         <a href="index.html" class="navbar-brand">Orinoco</a>
@@ -37,13 +39,12 @@
     </nav>
 </header>
 
-<body>
     <div class="container-fluid">
         <div class="row d-flex justify-content-evenly">
             <div class="product card m-5">
                 <div id="title" class="card-header product-title h4">
                 </div>
-                <img src="" class="card-img-top product-img" alt="image d'appareil photo">
+                <img src class="card-img-top product-img" alt="image d'appareil photo">
                 <div class="card-body">
                     <h5 class="card-title product-title"></h5>
                     <p class="card-text product-description"></p>
@@ -56,25 +57,25 @@
             </div>
         </div>
     </div>
-</body>
-
-<div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Le produit a été ajouté au panier.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+    <div class="modal fade" id="confirm-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Le produit a été ajouté au panier.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>    
+</body>
+
 
 </html>
